@@ -15,7 +15,7 @@ function App() {
     setquoteBy("Fetching author...");
 
     try {
-      const response = await axios.get(import.meta.env.VITE_API_URL,
+      const response = await axios.get('https://api.api-ninjas.com/v1/quotes',
         {
           headers: { "X-Api-Key": import.meta.env.VITE_API_KEY }
         }
