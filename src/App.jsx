@@ -5,6 +5,7 @@ import './App.css'
 function App() {
   const [quote, setquote] = useState('')
   const [quoteBy, setquoteBy] = useState('')
+  const [animate, setAnimate] = useState(false)
 
   const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -13,6 +14,9 @@ function App() {
   }, [])
 
   const fetchQuote = async () => {
+    setAnimate(false);
+    setTimeout(() => setAnimate(true), 10);
+
     setquote("Fetching quote...");
     setquoteBy("Fetching author...");
 
@@ -39,7 +43,10 @@ function App() {
 
       <button onClick={fetchQuote} className='cursor-pointer border border-white px-4 py-2 rounded-lg mt-5 sm:text-lg'>Generate</button>
 
-      <div className="quoteBox border border-white px-6 py-3 rounded-lg mt-6 mx-5 text-center sm:text-xl text-lg">{quote}</div>
+      <div className={`quoteBox border border-white px-6 py-3 rounded-lg mt-6 mx-5 text-center sm:text-xl text-lg ${animate ? "fadeIn" : ""}`}>
+        {quote}
+      </div>
+
 
       <div className="by"><p>By - {quoteBy}</p></div>
     </div>
