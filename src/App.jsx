@@ -6,6 +6,8 @@ function App() {
   const [quote, setquote] = useState('')
   const [quoteBy, setquoteBy] = useState('')
 
+  const API_KEY = import.meta.env.VITE_API_KEY;
+
   useEffect(() => {
     fetchQuote()
   }, [])
@@ -17,7 +19,7 @@ function App() {
     try {
       const response = await axios.get('https://api.api-ninjas.com/v1/quotes',
         {
-          headers: { "X-Api-Key": import.meta.env.VITE_API_KEY }
+          headers: { "X-Api-Key": API_KEY }
         }
       )
       // console.log(response.data[0].quote)
